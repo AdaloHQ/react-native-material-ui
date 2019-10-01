@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "copy": "rm -rf ../material-components-library/node_modules/@protonapp/react-native-material-ui/src && cp -r src ../material-components-library/node_modules/@protonapp/react-native-material-ui/src",
+    "copy:test": "rm -rf ../../Builds/Fab/node_modules/@protonapp/react-native-material-ui/src && cp -r src ../../Builds/Fab/node_modules/@protonapp/react-native-material-ui/src",
     "lint": "eslint ./"
   },
   "repository": {
