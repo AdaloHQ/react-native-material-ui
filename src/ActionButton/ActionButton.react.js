@@ -182,7 +182,7 @@ class ActionButton extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { render: 'button' };
+    this.state = { render: 'button', elevation: 6 };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -338,17 +338,18 @@ class ActionButton extends PureComponent {
     const mainIcon = render !== 'button' ? 'clear' : icon;
 
     return (
-      <View key="main-button" style={styles.container}>
         <RippleFeedback
           style={getRippleContainerStyle(styles.container)}
           color={this.getRippleColor()}
           onPress={() => this.onPress('main-button')}
           onLongPress={onLongPress}
           delayPressIn={20}
+          borderless={false}
         >
-          {this.renderIconButton(styles, mainIcon)}
+          <View key="main-button" style={styles.container}>
+            {this.renderIconButton(styles, mainIcon)}
+          </View>
         </RippleFeedback>
-      </View>
     );
   };
 

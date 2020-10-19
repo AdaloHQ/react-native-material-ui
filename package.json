@@ -1,10 +1,12 @@
 {
-  "name": "react-native-material-ui",
-  "version": "0.0.1",
+  "name": "@protonapp/react-native-material-ui",
+  "version": "2.0.3",
   "description": "React Native Material Design Components",
   "main": "./index.js",
   "scripts": {
     "test": "jest",
+    "copy": "rm -rf ../material-components-library/node_modules/@protonapp/react-native-material-ui/src && cp -r src ../material-components-library/node_modules/@protonapp/react-native-material-ui/src",
+    "copy:test": "rm -rf ../../Builds/Fab/node_modules/@protonapp/react-native-material-ui/src && cp -r src ../../Builds/Fab/node_modules/@protonapp/react-native-material-ui/src",
     "lint": "eslint ./"
   },
   "repository": {
@@ -33,7 +35,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-vector-icons": "^6.0.2"
+    "react-native-vector-icons": "*"
   },
   "dependencies": {
     "color": "3.1.0",
@@ -63,6 +65,7 @@
     "react-native": "0.57.4",
     "react-native-vector-icons": "^6.0.2",
     "react-test-renderer": "16.4.1",
-    "semantic-release": "^15.13.3"
+    "semantic-release": "^15.13.3",
+    "react-native-web": "^0.9.8"
   }
 }

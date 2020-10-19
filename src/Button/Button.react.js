@@ -207,7 +207,9 @@ class Button extends PureComponent {
     const content = (
       <View style={styles.container} pointerEvents="box-only">
         {this.renderIcon(styles)}
-        <Text style={styles.text}>{upperCase ? text.toUpperCase() : text}</Text>
+        <Text style={styles.text} numberOfLines={1}>
+          {upperCase ? text.toUpperCase() : text}
+        </Text>
       </View>
     );
 

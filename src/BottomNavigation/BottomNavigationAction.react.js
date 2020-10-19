@@ -104,7 +104,7 @@ class BottomNavigationAction extends PureComponent {
       return null;
     }
 
-    return <Text style={styles.label}>{label}</Text>;
+    return <Text style={styles.label} numberOfLines={1}>{label}</Text>;
   }
 
   render() {
