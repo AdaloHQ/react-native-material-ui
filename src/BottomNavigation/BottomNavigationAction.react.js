@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import { ViewPropTypes } from '../utils';
 /* eslint-enable import/no-unresolved, import/extensions */
 import withTheme from '../styles/withTheme';
@@ -42,6 +42,7 @@ const propTypes = {
     disabled: Text.propTypes.style, // eslint-disable-line
   }),
   disabled: PropTypes.bool,
+  hasUpdatedLoadingStates: PropTypes.bool,
 };
 const defaultProps = {
   testID: null,
@@ -76,16 +77,51 @@ function getStyles(props) {
     ],
     icon: [bottomNavigationAction.icon, local.icon, props.style.icon],
     label: [bottomNavigationAction.label, local.label, props.style.label],
+    loading: {
+      width: 24,
+      height: 24,
+    }
   };
 }
 
 class BottomNavigationAction extends PureComponent {
+  state = {
+    isLoading: false,
+  }
+
+  clickAction = async () => {
+    const { onPress } = this.props;
+
+    if (!onPress) {
+      return;
+    }
+
+    this.setState({
+      isLoading: true,
+    })
+
+    await onPress();
+
+    this.setState({
+      isLoading: false,
+    })
+  }
+
+
   renderIcon(styles) {
     const { icon, iconSet } = this.props;
+    const { isLoading } = this.state;
     const { color } = StyleSheet.flatten(styles.icon);
 
     let element;
-    if (React.isValidElement(icon)) {
+
+    if (isLoading) {
+      element = (
+        <View style={styles.loading}>
+          <ActivityIndicator size="small" color={color} />
+        </View>
+      )
+    } else if (React.isValidElement(icon)) {
       // we need icon to change color after it's selected, so we send the color and style to
       // custom element
       element = React.cloneElement(icon, { style: styles.icon, color });
@@ -108,12 +144,13 @@ class BottomNavigationAction extends PureComponent {
   }
 
   render() {
-    const { onPress, testID, disabled } = this.props;
+    const { onPress, testID, disabled, hasUpdatedLoadingStates } = this.props;
+    const onPressAction = hasUpdatedLoadingStates ? this.clickAction : onPress;
 
     const styles = getStyles(this.props, this.context);
 
     return (
-      <RippleFeedback disabled={disabled} testID={testID} onPress={onPress}>
+      <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
         <View style={styles.container} pointerEvents="box-only">
           {this.renderIcon(styles)}
           {this.renderLabel(styles)}
