@@ -1,6 +1,6 @@
 {
   "name": "@protonapp/react-native-material-ui",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "React Native Material Design Components",
   "main": "./index.js",
   "scripts": {
