@@ -42,7 +42,7 @@ const propTypes = {
     disabled: Text.propTypes.style, // eslint-disable-line
   }),
   disabled: PropTypes.bool,
-  hasUpdatedLoadingStates: PropTypes.bool,
+  showLoadingState: PropTypes.bool,
 };
 const defaultProps = {
   testID: null,
@@ -144,8 +144,8 @@ class BottomNavigationAction extends PureComponent {
   }
 
   render() {
-    const { onPress, testID, disabled, hasUpdatedLoadingStates } = this.props;
-    const onPressAction = hasUpdatedLoadingStates ? this.clickAction : onPress;
+    const { onPress, testID, disabled, showLoadingState } = this.props;
+    const onPressAction = showLoadingState ? this.clickAction : onPress;
 
     const styles = getStyles(this.props, this.context);
 
