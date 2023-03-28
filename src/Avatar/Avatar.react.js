@@ -37,7 +37,7 @@ const propTypes = {
    */
   style: PropTypes.shape({
     container: ViewPropTypes.style,
-    content: Text.propTypes.style, // eslint-disable-line
+    content: Text.style,
   }),
   iconSet: PropTypes.string,
   /**

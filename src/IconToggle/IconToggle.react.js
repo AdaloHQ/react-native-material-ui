@@ -60,7 +60,7 @@ const propTypes = {
   style: PropTypes.oneOfType([
     PropTypes.shape({
       container: ViewPropTypes.style,
-      icon: Text.propTypes.style, // eslint-disable-line
+      icon: Text.style,
     }),
     PropTypes.array,
   ]),

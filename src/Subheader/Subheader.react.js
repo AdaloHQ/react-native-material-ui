@@ -12,7 +12,7 @@ const propTypes = {
   lines: PropTypes.number,
   style: PropTypes.shape({
     container: ViewPropTypes.style,
-    text: Text.propTypes.style, // eslint-disable-line
+    text: Text.style,
   }),
 };
 const defaultProps = {

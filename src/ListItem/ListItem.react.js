@@ -43,11 +43,11 @@ const propTypes = {
     leftElementContainer: ViewPropTypes.style,
     centerElementContainer: ViewPropTypes.style,
     textViewContainer: ViewPropTypes.style,
-    primaryText: Text.propTypes.style, // eslint-disable-line
+    primaryText: Text.style,
     firstLine: ViewPropTypes.style,
-    primaryTextContainer: Text.propTypes.style, // eslint-disable-line
-    secondaryText: Text.propTypes.style, // eslint-disable-line
-    tertiaryText: Text.propTypes.style, // eslint-disable-line
+    primaryTextContainer: Text.style,
+    secondaryText: Text.style,
+    tertiaryText: Text.style,
     rightElementContainer: ViewPropTypes.style,
     leftElement: PropTypes.style,
     rightElement: PropTypes.style,

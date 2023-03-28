@@ -50,7 +50,7 @@ const propTypes = {
    */
   style: PropTypes.shape({
     container: ViewPropTypes.style,
-    text: Text.propTypes.style, // eslint-disable-line
+    text: Text.style, // eslint-disable-line
   }),
   primary: PropTypes.bool,
   accent: PropTypes.bool,

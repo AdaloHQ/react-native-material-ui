@@ -75,7 +75,7 @@ const propTypes = {
    */
   style: PropTypes.shape({
     container: ViewPropTypes.style,
-    icon: Text.propTypes.style, // eslint-disable-line
+    icon: Text.style,
   }),
 };
 const defaultProps = {
@@ -338,18 +338,18 @@ class ActionButton extends PureComponent {
     const mainIcon = render !== 'button' ? 'clear' : icon;
 
     return (
-        <RippleFeedback
-          style={getRippleContainerStyle(styles.container)}
-          color={this.getRippleColor()}
-          onPress={() => this.onPress('main-button')}
-          onLongPress={onLongPress}
-          delayPressIn={20}
-          borderless={false}
-        >
-          <View key="main-button" style={styles.container}>
-            {this.renderIconButton(styles, mainIcon)}
-          </View>
-        </RippleFeedback>
+      <RippleFeedback
+        style={getRippleContainerStyle(styles.container)}
+        color={this.getRippleColor()}
+        onPress={() => this.onPress('main-button')}
+        onLongPress={onLongPress}
+        delayPressIn={20}
+        borderless={false}
+      >
+        <View key="main-button" style={styles.container}>
+          {this.renderIconButton(styles, mainIcon)}
+        </View>
+      </RippleFeedback>
     );
   };
 
