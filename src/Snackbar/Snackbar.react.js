@@ -1,13 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Text,
-  Animated,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Text, Animated, StyleSheet, Pressable, View } from 'react-native';
 import { ViewPropTypes } from '../utils';
 import withTheme from '../styles/withTheme';
 
@@ -239,14 +233,14 @@ class Snackbar extends PureComponent {
 
     return (
       <Animated.View style={visible ? combinedStyle : containerStyle}>
-        <TouchableWithoutFeedback onPress={onPress}>
+        <Pressable onPress={onPress}>
           <View style={styles.content}>
             <Text style={styles.message} onLayout={this.onTextLayout}>
               {message}
             </Text>
             {this.renderAction()}
           </View>
-        </TouchableWithoutFeedback>
+        </Pressable>
       </Animated.View>
     );
   }

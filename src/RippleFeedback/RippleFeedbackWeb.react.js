@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableWithoutFeedback } from 'react-native';
+import { Pressable } from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 const propTypes = {
@@ -21,11 +21,7 @@ class RippleFeedbackWeb extends PureComponent {
   render() {
     const { children, color, borderless, ...otherProps } = this.props;
 
-    return (
-      <TouchableWithoutFeedback {...otherProps}>
-        {children}
-      </TouchableWithoutFeedback>
-    );
+    return <Pressable {...otherProps}>{children}</Pressable>;
   }
 }
 

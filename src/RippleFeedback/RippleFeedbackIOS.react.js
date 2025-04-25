@@ -1,13 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Animated,
-  Easing,
-  View,
-  TouchableWithoutFeedback,
-  StyleSheet,
-} from 'react-native';
+import { Animated, Easing, View, Pressable, StyleSheet } from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
 import Color from 'color';
 import { ViewPropTypes } from '../utils';
@@ -319,7 +313,7 @@ class RippleFeedbackIOS extends PureComponent {
     );
 
     return (
-      <TouchableWithoutFeedback
+      <Pressable
         testID={testID}
         disabled={disabled}
         onLayout={this.onLayoutChanged}
@@ -329,7 +323,7 @@ class RippleFeedbackIOS extends PureComponent {
         onPress={this.onPress}
       >
         {React.cloneElement(parent, [], parent.props.children, ripple)}
-      </TouchableWithoutFeedback>
+      </Pressable>
     );
   }
 }
