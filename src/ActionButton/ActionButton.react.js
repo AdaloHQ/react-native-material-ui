@@ -6,7 +6,7 @@ import {
   Text,
   LayoutAnimation,
   StyleSheet,
-  TouchableWithoutFeedback,
+  Pressable,
   Animated,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -300,7 +300,7 @@ class ActionButton extends PureComponent {
 
     return (
       <View style={[StyleSheet.absoluteFillObject, { flex: 1 }]}>
-        <TouchableWithoutFeedback onPress={this.toggleState}>
+        <Pressable onPress={this.toggleState}>
           <View style={styles.overlayContainer}>
             <View style={[styles.positionContainer, styles.speedDialContainer]}>
               <View
@@ -326,7 +326,7 @@ class ActionButton extends PureComponent {
               {this.renderMainButton(styles)}
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </Pressable>
       </View>
     );
   };

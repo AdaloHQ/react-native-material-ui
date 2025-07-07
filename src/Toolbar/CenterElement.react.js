@@ -1,13 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Animated,
-  TouchableWithoutFeedback,
-  Text,
-  TextInput,
-  Easing,
-} from 'react-native';
+import { Animated, Pressable, Text, TextInput, Easing } from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
 import { ViewPropTypes } from '../utils';
 import withTheme from '../styles/withTheme';
@@ -162,13 +156,13 @@ class CenterElement extends PureComponent {
     }
 
     return (
-      <TouchableWithoutFeedback key="center" onPress={onPress}>
+      <Pressable key="center" onPress={onPress}>
         <Animated.View
           style={[styles.centerElementContainer, { opacity: opacityValue }]}
         >
           {content}
         </Animated.View>
-      </TouchableWithoutFeedback>
+      </Pressable>
     );
   }
 }

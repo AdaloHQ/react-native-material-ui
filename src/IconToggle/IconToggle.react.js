@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Platform,
   Easing,
-  TouchableWithoutFeedback,
+  Pressable,
 } from 'react-native';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -258,7 +258,7 @@ class IconToggle extends PureComponent {
     const styles = getStyles(this.props, this.state);
 
     return (
-      <TouchableWithoutFeedback
+      <Pressable
         testID={testID}
         onPress={this.onPress}
         onPressIn={this.onPressIn}
@@ -268,7 +268,7 @@ class IconToggle extends PureComponent {
           {this.renderRippleView(styles)}
           <View style={styles.container}>{this.renderIcon(styles)}</View>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
     );
   }
 }
