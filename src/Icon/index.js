@@ -38,9 +38,8 @@ const defaultProps = {
   iconSet: null,
 };
 
-const isURL = value => {
-  value.startsWith('https://');
-};
+const isURL = value =>
+  value && typeof value === 'string' && value.startsWith('https://');
 
 const getIconComponent = iconSet => {
   switch (iconSet) {
