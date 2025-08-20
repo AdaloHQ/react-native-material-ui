@@ -180,6 +180,7 @@ class BottomNavigationAction extends PureComponent {
       {this.renderIcon(styles)}
       {this.renderLabel(styles)}
     </View>
+          )
         }
       </RippleFeedback>
     );
