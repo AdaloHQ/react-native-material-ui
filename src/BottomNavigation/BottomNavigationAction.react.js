@@ -143,25 +143,44 @@ class BottomNavigationAction extends PureComponent {
   }
 
   render() {
-    const { onPress, testID, disabled, showLoadingState } = this.props;
+    const { onPress, testID, disabled, showLoadingState, label } = this.props;
     const onPressAction = showLoadingState ? this.clickAction : onPress;
 
     const styles = getStyles(this.props, this.context);
 
 
     if (Alert) {
-      Alert.alert(
-        'Debug Styles',
-        JSON.stringify(styles, null, 2),
-        [{ text: 'OK' }],
-      );
+      Alert.alert('Debug Styles', JSON.stringify(styles, null, 2), [
+        { text: 'OK' },
+      ]);
     }
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        <View style={styles.container} pointerEvents="box-only">
-          {this.renderIcon(styles)}
-          {this.renderLabel(styles)}
-        </View>
+        {
+          '1': (
+          <View>
+        {this.renderIcon(styles)}
+        {this.renderLabel(styles)}
+      </View>
+    ),
+      '2': (
+      <View pointerEvents="box-only">
+        {this.renderIcon(styles)}
+        {this.renderLabel(styles)}
+      </View>
+    ),
+      '3': (
+      <View style={styles.container}>
+        {this.renderIcon(styles)}
+        {this.renderLabel(styles)}
+      </View>
+    )
+  }[label] || (
+    <View style={styles.container} pointerEvents="box-only">
+      {this.renderIcon(styles)}
+      {this.renderLabel(styles)}
+    </View>
+        }
       </RippleFeedback>
     );
   }
