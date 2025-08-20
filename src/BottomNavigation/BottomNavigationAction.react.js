@@ -157,7 +157,7 @@ class BottomNavigationAction extends PureComponent {
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
         {
-          '1': (
+          {'1': (
           <View>
         {this.renderIcon(styles)}
         {this.renderLabel(styles)}
