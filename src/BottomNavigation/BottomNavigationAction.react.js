@@ -156,31 +156,40 @@ class BottomNavigationAction extends PureComponent {
     }
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        {{
-          '1': (
-            <View>
-              {this.renderIcon(styles)}
-              {this.renderLabel(styles)}
-            </View>
-          ),
-          '2': (
-            <View pointerEvents="box-only">
-              {this.renderIcon(styles)}
-              {this.renderLabel(styles)}
-            </View>
-          ),
-          '3': (
-            <View style={styles.container}>
-              {this.renderIcon(styles)}
-              {this.renderLabel(styles)}
-            </View>
-          ),
-        }[label] || (
-          <View style={styles.container} pointerEvents="box-only">
-            {this.renderIcon(styles)}
-            {this.renderLabel(styles)}
-          </View>
-        )}
+        {
+          switch (label) {
+          case '1':
+          return (
+          <View>
+        {this.renderIcon(styles)}
+        {this.renderLabel(styles)}
+      </View>
+    )
+    break
+  case '2':
+    return (
+      <View pointerEvents="box-only">
+        {this.renderIcon(styles)}
+        {this.renderLabel(styles)}
+      </View>
+    )
+    break
+  case '3':
+    return (
+      <View style={styles.container}>
+        {this.renderIcon(styles)}
+        {this.renderLabel(styles)}
+      </View>
+    )
+    break
+  default:
+    return (
+      <View style={styles.container} pointerEvents="box-only">
+        {this.renderIcon(styles)}
+        {this.renderLabel(styles)}
+      </View>
+    )
+        }
       </RippleFeedback>
     );
   }
