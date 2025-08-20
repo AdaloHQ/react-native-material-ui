@@ -144,7 +144,7 @@ class BottomNavigationAction extends PureComponent {
   }
 
   render() {
-    const { onPress, testID, disabled, showLoadingState } = this.props;
+    const { onPress, testID, disabled, showLoadingState, type } = this.props;
     const onPressAction = showLoadingState ? this.clickAction : onPress;
 
     const styles = getStyles(this.props, this.context);
