@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator, Alert } from 'react-native';
 import { ViewPropTypes } from '../utils';
 /* eslint-enable import/no-unresolved, import/extensions */
 import withTheme from '../styles/withTheme';
@@ -143,6 +143,59 @@ class BottomNavigationAction extends PureComponent {
     return <Text style={styles.label} numberOfLines={1}>{label}</Text>;
   }
 
+  renderContent(styles) {
+    const { layoutType } = this.props;
+
+    Alert.alert(
+      'Debug Styles',
+      JSON.stringify({ styles, props: this.props }, null, 2), // nicely formatted
+      [{ text: 'OK' }],
+    );
+
+    switch (layoutType) {
+      case 'iconLeft':
+        return (
+          <View style={[styles.container, { flexDirection: 'row', alignItems: 'center' }]} pointerEvents="box-only">
+            {this.renderIcon(styles)}
+            {this.renderLabel(styles)}
+          </View>
+        );
+
+      case 'iconRight':
+        return (
+          <View style={[styles.container, { flexDirection: 'row', alignItems: 'center' }]} pointerEvents="box-only">
+            {this.renderLabel(styles)}
+            {this.renderIcon(styles)}
+          </View>
+        );
+
+      case 'iconTop':
+        return (
+          <View style={[styles.container, { flexDirection: 'column', alignItems: 'center' }]} pointerEvents="box-only">
+            {this.renderIcon(styles)}
+            {this.renderLabel(styles)}
+          </View>
+        );
+
+      case 'iconBottom':
+        return (
+          <View style={[styles.container, { flexDirection: 'column', alignItems: 'center' }]} pointerEvents="box-only">
+            {this.renderLabel(styles)}
+            {this.renderIcon(styles)}
+          </View>
+        );
+
+      default:
+        return (
+          <View pointerEvents="box-only">
+            {this.renderIcon(styles)}
+            {this.renderLabel(styles)}
+          </View>
+        );
+    }
+  }
+
+
   render() {
     const { onPress, testID, disabled, showLoadingState } = this.props;
     const onPressAction = showLoadingState ? this.clickAction : onPress;
@@ -151,6 +204,7 @@ class BottomNavigationAction extends PureComponent {
 
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
+        {this.renderContent(styles)}
         <View style={styles.container} pointerEvents="box-only">
           {this.renderIcon(styles)}
           {this.renderLabel(styles)}
