@@ -107,6 +107,7 @@ class BottomNavigationAction extends PureComponent {
     })
   }
 
+
   renderIcon(styles) {
     const { icon, iconSet } = this.props;
     const { isLoading } = this.state;
@@ -143,7 +144,7 @@ class BottomNavigationAction extends PureComponent {
   }
 
   render() {
-    const { onPress, testID, disabled, showLoadingState, label } = this.props;
+    const { onPress, testID, disabled, showLoadingState } = this.props;
     const onPressAction = showLoadingState ? this.clickAction : onPress;
 
     const styles = getStyles(this.props, this.context);
@@ -156,41 +157,9 @@ class BottomNavigationAction extends PureComponent {
     }
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        <View>
-        {
-          switch (label) {
-          case '1':
-          return (
-          <View>
-        {this.renderIcon(styles)}
-        {this.renderLabel(styles)}
-      </View>
-    )
-    break
-  case '2':
-    return (
-      <View pointerEvents="box-only">
-        {this.renderIcon(styles)}
-        {this.renderLabel(styles)}
-      </View>
-    )
-    break
-  case '3':
-    return (
-      <View style={styles.container}>
-        {this.renderIcon(styles)}
-        {this.renderLabel(styles)}
-      </View>
-    )
-    break
-  default:
-    return (
-      <View style={styles.container} pointerEvents="box-only">
-        {this.renderIcon(styles)}
-        {this.renderLabel(styles)}
-      </View>
-    )
-        }
+        <View style={styles.container} pointerEvents="box-only">
+          {this.renderIcon(styles)}
+          {this.renderLabel(styles)}
         </View>
       </RippleFeedback>
     );
