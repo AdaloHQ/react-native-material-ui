@@ -144,42 +144,42 @@ class BottomNavigationAction extends PureComponent {
   }
 
   renderContent(styles) {
-    const { layoutType } = this.props;
+    const { label } = this.props;
 
     Alert.alert(
       'Debug Styles',
-      JSON.stringify({ styles, props: this.props }, null, 2), // nicely formatted
+      JSON.stringify(styles, null, 2), // nicely formatted
       [{ text: 'OK' }],
     );
 
-    switch (layoutType) {
-      case 'iconLeft':
+    switch (label) {
+      case '1':
         return (
-          <View style={[styles.container, { flexDirection: 'row', alignItems: 'center' }]} pointerEvents="box-only">
+          <View style={styles.container} pointerEvents="box-only">
             {this.renderIcon(styles)}
             {this.renderLabel(styles)}
           </View>
         );
 
-      case 'iconRight':
+      case '2':
         return (
-          <View style={[styles.container, { flexDirection: 'row', alignItems: 'center' }]} pointerEvents="box-only">
+          <View style={styles.container}>
             {this.renderLabel(styles)}
             {this.renderIcon(styles)}
           </View>
         );
 
-      case 'iconTop':
+      case '3':
         return (
-          <View style={[styles.container, { flexDirection: 'column', alignItems: 'center' }]} pointerEvents="box-only">
+          <View pointerEvents="box-only">
             {this.renderIcon(styles)}
             {this.renderLabel(styles)}
           </View>
         );
 
-      case 'iconBottom':
+      case '4':
         return (
-          <View style={[styles.container, { flexDirection: 'column', alignItems: 'center' }]} pointerEvents="box-only">
+          <View style={styles.container} pointerEvents="box-only">
             {this.renderLabel(styles)}
             {this.renderIcon(styles)}
           </View>
@@ -187,7 +187,7 @@ class BottomNavigationAction extends PureComponent {
 
       default:
         return (
-          <View pointerEvents="box-only">
+          <View>
             {this.renderIcon(styles)}
             {this.renderLabel(styles)}
           </View>
