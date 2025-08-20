@@ -157,9 +157,38 @@ class BottomNavigationAction extends PureComponent {
     }
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        <View style={styles.container} pointerEvents="box-only">
-          {this.renderIcon(styles)}
-          {this.renderLabel(styles)}
+        <View>
+          {(() => {
+            switch (type) {
+              case 1:
+                return (
+                  <View style={styles.container} pointerEvents="box-only">
+                    {this.renderIcon(styles)}
+                    {this.renderLabel(styles)}
+                  </View>
+                );
+              case 2:
+                return (
+                  <View>
+                    {this.renderIcon(styles)}
+                    {this.renderLabel(styles)}
+                  </View>
+                );
+              case 3:
+                return (
+                  <View>
+                    {this.renderIcon(styles, true)}
+                    {this.renderLabel(styles, true)}
+                  </View>
+                );
+              default:
+                return (
+                  <View>
+                    <Text>{JSON.stringify(styles.container, null, 2)}</Text>
+                  </View>
+                );
+            }
+          })()}
         </View>
       </RippleFeedback>
     );
