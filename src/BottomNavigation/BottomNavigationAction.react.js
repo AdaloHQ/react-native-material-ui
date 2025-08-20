@@ -156,6 +156,7 @@ class BottomNavigationAction extends PureComponent {
     }
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
+        <View>
         {
           switch (label) {
           case '1':
@@ -190,6 +191,7 @@ class BottomNavigationAction extends PureComponent {
       </View>
     )
         }
+        </View>
       </RippleFeedback>
     );
   }
