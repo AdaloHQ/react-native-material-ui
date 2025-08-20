@@ -80,14 +80,14 @@ function getStyles(props) {
     loading: {
       width: 24,
       height: 24,
-    },
+    }
   };
 }
 
 class BottomNavigationAction extends PureComponent {
   state = {
     isLoading: false,
-  };
+  }
 
   clickAction = async () => {
     const { onPress } = this.props;
@@ -98,14 +98,14 @@ class BottomNavigationAction extends PureComponent {
 
     this.setState({
       isLoading: true,
-    });
+    })
 
     await onPress();
 
     this.setState({
       isLoading: false,
-    });
-  };
+    })
+  }
 
   renderIcon(styles) {
     const { icon, iconSet } = this.props;
@@ -119,7 +119,7 @@ class BottomNavigationAction extends PureComponent {
         <View style={styles.loading}>
           <ActivityIndicator size="small" color={color} />
         </View>
-      );
+      )
     } else if (React.isValidElement(icon)) {
       // we need icon to change color after it's selected, so we send the color and style to
       // custom element
@@ -139,11 +139,7 @@ class BottomNavigationAction extends PureComponent {
       return null;
     }
 
-    return (
-      <Text style={styles.label} numberOfLines={1}>
-        {label}
-      </Text>
-    );
+    return <Text style={styles.label} numberOfLines={1}>{label}</Text>;
   }
 
   render() {
@@ -152,19 +148,17 @@ class BottomNavigationAction extends PureComponent {
 
     const styles = getStyles(this.props, this.context);
 
-    Alert.alert(
-      'Debug Styles',
-      JSON.stringify(styles, null, 2),
-      [{ text: 'OK' }],
-    );
 
+    if (Alert) {
+      Alert.alert(
+        'Debug Styles',
+        JSON.stringify(styles, null, 2),
+        [{ text: 'OK' }],
+      );
+    }
     return (
-      <RippleFeedback
-        disabled={disabled}
-        testID={testID}
-        onPress={onPressAction}
-      >
-        <View>
+      <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
+        <View style={styles.container} pointerEvents="box-only">
           {this.renderIcon(styles)}
           {this.renderLabel(styles)}
         </View>
