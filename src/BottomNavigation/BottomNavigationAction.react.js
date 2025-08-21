@@ -155,8 +155,6 @@ class BottomNavigationAction extends PureComponent {
 
     const styles = getStyles(this.props, this.context);
 
-    Alert.alert('Debug styles', JSON.stringify({ styles, label }, null, 2));
-
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
         {(() => {
