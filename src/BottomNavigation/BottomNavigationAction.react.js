@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator, Alert } from 'react-native';
 import { ViewPropTypes } from '../utils';
 /* eslint-enable import/no-unresolved, import/extensions */
 import withTheme from '../styles/withTheme';
@@ -144,14 +144,16 @@ class BottomNavigationAction extends PureComponent {
   }
 
   render() {
-    const { onPress, testID, disabled, showLoadingState } = this.props;
+    const { onPress, testID, disabled, showLoadingState, type } = this.props;
     const onPressAction = showLoadingState ? this.clickAction : onPress;
 
     const styles = getStyles(this.props, this.context);
 
+    Alert.alert('Debug styles', JSON.stringify({ styles, type }, null, 2));
+
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        <View style={styles.container} pointerEvents="box-only">
+        <View pointerEvents="box-only">
           {this.renderIcon(styles)}
           {this.renderLabel(styles)}
         </View>
