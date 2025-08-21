@@ -150,19 +150,61 @@ class BottomNavigationAction extends PureComponent {
   }
 
   render() {
-    const { onPress, testID, disabled, showLoadingState, type } = this.props;
+    const { onPress, testID, disabled, showLoadingState, label } = this.props;
     const onPressAction = showLoadingState ? this.clickAction : onPress;
 
     const styles = getStyles(this.props, this.context);
 
-    Alert.alert('Debug styles', JSON.stringify({ styles, type }, null, 2));
+    Alert.alert('Debug styles', JSON.stringify({ styles, label }, null, 2));
 
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        <View style={styles.container} pointerEvents="box-only">
-          {this.renderIcon(styles)}
-          {this.renderLabel(styles)}
-        </View>
+        {(() => {
+          switch (label) {
+            case '1':
+              return (
+                <View style={styles.container} pointerEvents="box-only">
+                  {this.renderIcon(styles)}
+                  {this.renderLabel(styles)}
+                </View>
+              );
+            case '2':
+              return (
+                <View pointerEvents="box-only">
+                  {this.renderIcon(styles)}
+                  {this.renderLabel(styles)}
+                </View>
+              );
+            case '3':
+              return (
+                <View style={styles.container}>
+                  {this.renderIcon(styles, true)}
+                  {this.renderLabel(styles, true)}
+                </View>
+              );
+            case '4':
+              return (
+                <View
+                  style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    maxWidth: 168,
+                  }}
+                >
+                  {this.renderIcon(styles, true)}
+                  {this.renderLabel(styles, true)}
+                </View>
+              );
+            default:
+              return (
+                <View>
+                  {this.renderIcon(styles, true)}
+                  {this.renderLabel(styles, true)}
+                </View>
+              );
+          }
+        })()}
       </RippleFeedback>
     );
   }

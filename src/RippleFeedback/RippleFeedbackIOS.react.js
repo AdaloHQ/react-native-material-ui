@@ -293,11 +293,24 @@ class RippleFeedbackIOS extends PureComponent {
   };
 
   render() {
-    const { children, disabled, testID } = this.props;
+    const { children, disabled, style, testID } = this.props;
 
     if (!isRippleVisible(this.props)) {
       return children;
     }
+
+    const parent = React.Children.only(children);
+
+    const ripple = (
+      <View
+        key="ripple-feedback-layer"
+        style={[styles.container, style.container]}
+        pointerEvents="none"
+      >
+        {this.renderOpacityBackground()}
+        {this.renderRippleView()}
+      </View>
+    );
 
     return (
       <Pressable
@@ -309,14 +322,7 @@ class RippleFeedbackIOS extends PureComponent {
         onPressOut={this.onPressOut}
         onPress={this.onPress}
       >
-        <View style={{ flex: 1 }}>{children}</View>
-        <View
-          pointerEvents="none"
-          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-        >
-          {this.renderOpacityBackground()}
-          {this.renderRippleView()}
-        </View>
+        {React.cloneElement(parent, [], parent.props.children, ripple)}
       </Pressable>
     );
   }
