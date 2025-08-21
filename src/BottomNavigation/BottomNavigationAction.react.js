@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, ActivityIndicator, Alert } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import { ViewPropTypes } from '../utils';
 /* eslint-enable import/no-unresolved, import/extensions */
 import withTheme from '../styles/withTheme';
@@ -157,52 +157,54 @@ class BottomNavigationAction extends PureComponent {
 
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        {(() => {
-          switch (label) {
-            case '1':
-              return (
-                <View style={styles.container} pointerEvents="box-only">
-                  {this.renderIcon(styles)}
-                  {this.renderLabel(styles)}
-                </View>
-              );
-            case '2':
-              return (
-                <View pointerEvents="box-only">
-                  {this.renderIcon(styles)}
-                  {this.renderLabel(styles)}
-                </View>
-              );
-            case '3':
-              return (
-                <View style={styles.container}>
-                  {this.renderIcon(styles, true)}
-                  {this.renderLabel(styles, true)}
-                </View>
-              );
-            case '4':
-              return (
-                <View
-                  style={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    maxWidth: 168,
-                  }}
-                >
-                  {this.renderIcon(styles, true)}
-                  {this.renderLabel(styles, true)}
-                </View>
-              );
-            default:
-              return (
-                <View>
-                  {this.renderIcon(styles, true)}
-                  {this.renderLabel(styles, true)}
-                </View>
-              );
-          }
-        })()}
+        <View>
+          {(() => {
+            switch (label) {
+              case '1':
+                return (
+                  <View style={styles.container} pointerEvents="box-only">
+                    {this.renderIcon(styles)}
+                    {this.renderLabel(styles)}
+                  </View>
+                );
+              case '2':
+                return (
+                  <View pointerEvents="box-only">
+                    {this.renderIcon(styles)}
+                    {this.renderLabel(styles)}
+                  </View>
+                );
+              case '3':
+                return (
+                  <View style={styles.container}>
+                    {this.renderIcon(styles, true)}
+                    {this.renderLabel(styles, true)}
+                  </View>
+                );
+              case '4':
+                return (
+                  <View
+                    style={{
+                      flex: 1,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      maxWidth: 168,
+                    }}
+                  >
+                    {this.renderIcon(styles, true)}
+                    {this.renderLabel(styles, true)}
+                  </View>
+                );
+              default:
+                return (
+                  <View>
+                    {this.renderIcon(styles, true)}
+                    {this.renderLabel(styles, true)}
+                  </View>
+                );
+            }
+          })()}
+        </View>
       </RippleFeedback>
     );
   }
