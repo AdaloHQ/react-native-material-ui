@@ -300,7 +300,8 @@ class RippleFeedbackIOS extends PureComponent {
     }
 
     const parent = React.Children.only(children);
-
+    const parentStyle = StyleSheet.flatten(parent.props.style || []);
+    const mergedStyle = [parentStyle];
     const ripple = (
       <View
         key="ripple-feedback-layer"
@@ -322,7 +323,12 @@ class RippleFeedbackIOS extends PureComponent {
         onPressOut={this.onPressOut}
         onPress={this.onPress}
       >
-        {React.cloneElement(parent, [], parent.props.children, ripple)}
+        {React.cloneElement(
+          parent,
+          [{ style: mergedStyle }],
+          parent.props.children,
+          ripple,
+        )}
       </Pressable>
     );
   }
