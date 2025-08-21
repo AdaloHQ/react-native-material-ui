@@ -146,7 +146,11 @@ class BottomNavigationAction extends PureComponent {
       return null;
     }
 
-    return <Text style={styles.label} numberOfLines={1}>{label}</Text>;
+    return (
+      <Text style={styles.label} numberOfLines={1}>
+        {label}
+      </Text>
+    );
   }
 
   render() {
@@ -156,7 +160,11 @@ class BottomNavigationAction extends PureComponent {
     const styles = getStyles(this.props, this.context);
 
     return (
-      <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
+      <RippleFeedback
+        disabled={disabled}
+        testID={testID}
+        onPress={onPressAction}
+      >
         <View>
           {(() => {
             switch (label) {
@@ -169,14 +177,17 @@ class BottomNavigationAction extends PureComponent {
                 );
               case '2':
                 return (
-                  <View pointerEvents="box-only">
+                  <View
+                    style={{ alignItems: 'center', justifyContent: 'center' }}
+                    pointerEvents="box-only"
+                  >
                     {this.renderIcon(styles)}
                     {this.renderLabel(styles)}
                   </View>
                 );
               case '3':
                 return (
-                  <View style={styles.container}>
+                  <View style={{ flex: 1 }}>
                     {this.renderIcon(styles, true)}
                     {this.renderLabel(styles, true)}
                   </View>
