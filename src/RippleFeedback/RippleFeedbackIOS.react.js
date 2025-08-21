@@ -309,8 +309,11 @@ class RippleFeedbackIOS extends PureComponent {
         onPressOut={this.onPressOut}
         onPress={this.onPress}
       >
-        <View style={{ flex: 1 }}>
-          {children}
+        <View style={{ flex: 1 }}>{children}</View>
+        <View
+          pointerEvents="none"
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        >
           {this.renderOpacityBackground()}
           {this.renderRippleView()}
         </View>
