@@ -1,7 +1,14 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Easing, View, Pressable, StyleSheet } from 'react-native';
+import {
+  Animated,
+  Easing,
+  View,
+  Pressable,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
 import Color from 'color';
 import { ViewPropTypes } from '../utils';
@@ -323,12 +330,7 @@ class RippleFeedbackIOS extends PureComponent {
         onPressOut={this.onPressOut}
         onPress={this.onPress}
       >
-        {React.cloneElement(
-          parent,
-          { style: mergedStyle },
-          parent.props.children,
-          ripple,
-        )}
+        {React.cloneElement(parent, [], parent.props.children, ripple)}
       </TouchableWithoutFeedback>
     );
   }
