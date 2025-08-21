@@ -54,6 +54,12 @@ const defaultProps = {
   style: {},
 };
 
+function normalizeStyle(input) {
+  return StyleSheet.flatten(
+    (Array.isArray(input) ? input : [input]).filter(Boolean)
+  );
+}
+
 function getStyles(props) {
   const { bottomNavigationAction } = props.theme;
 
@@ -70,13 +76,13 @@ function getStyles(props) {
   }
 
   return {
-    container: [
+    container: normalizeStyle([
       bottomNavigationAction.container,
       local.container,
       props.style.container,
-    ],
-    icon: [bottomNavigationAction.icon, local.icon, props.style.icon],
-    label: [bottomNavigationAction.label, local.label, props.style.label],
+    ]),
+    icon: normalizeStyle([bottomNavigationAction.icon, local.icon, props.style.icon]),
+    label: normalizeStyle([bottomNavigationAction.label, local.label, props.style.label]),
     loading: {
       width: 24,
       height: 24,
@@ -153,7 +159,7 @@ class BottomNavigationAction extends PureComponent {
 
     return (
       <RippleFeedback disabled={disabled} testID={testID} onPress={onPressAction}>
-        <View pointerEvents="box-only">
+        <View style={styles.container} pointerEvents="box-only">
           {this.renderIcon(styles)}
           {this.renderLabel(styles)}
         </View>
