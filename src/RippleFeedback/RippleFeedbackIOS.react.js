@@ -323,17 +323,12 @@ class RippleFeedbackIOS extends PureComponent {
         onPressOut={this.onPressOut}
         onPress={this.onPress}
       >
-        <View style={{ flex: 1, position: 'relative' }}>
-          {parent.props.children}
-          <View
-            key="ripple-feedback-layer"
-            style={[styles.container, style.container]}
-            pointerEvents="none"
-          >
-            {this.renderOpacityBackground()}
-            {this.renderRippleView()}
-          </View>
-        </View>
+        {React.cloneElement(
+          parent,
+          { style: mergedStyle },
+          parent.props.children,
+          ripple,
+        )}
       </Pressable>
     );
   }

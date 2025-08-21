@@ -196,10 +196,15 @@ class BottomNavigationAction extends PureComponent {
                 return (
                   <View
                     style={{
-                      flex: 1,
+                      alignSelf: 'stretch',
                       alignItems: 'center',
                       justifyContent: 'center',
                       maxWidth: 168,
+                      minWidth: 80,
+                      paddingBottom: 12,
+                      paddingTop: 8,
+                      paddingLeft: 12,
+                      paddingRight: 12,
                     }}
                   >
                     {this.renderIcon(styles, true)}
