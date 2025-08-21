@@ -314,7 +314,7 @@ class RippleFeedbackIOS extends PureComponent {
     );
 
     return (
-      <Pressable
+      <TouchableWithoutFeedback
         testID={testID}
         disabled={disabled}
         onLayout={this.onLayoutChanged}
@@ -329,7 +329,7 @@ class RippleFeedbackIOS extends PureComponent {
           parent.props.children,
           ripple,
         )}
-      </Pressable>
+      </TouchableWithoutFeedback>
     );
   }
 }
