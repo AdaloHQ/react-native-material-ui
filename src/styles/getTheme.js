@@ -250,7 +250,7 @@ export default function getTheme(theme, ...more) {
         merge(
           {
             container: {
-              flex: 1,
+              alignSelf: 'stretch',
               alignItems: 'center',
               justifyContent: 'center',
               maxWidth: 168,
