@@ -325,7 +325,7 @@ class RippleFeedbackIOS extends PureComponent {
       >
         {React.cloneElement(
           parent,
-          [{ style: mergedStyle }],
+          { style: mergedStyle },
           parent.props.children,
           ripple,
         )}
