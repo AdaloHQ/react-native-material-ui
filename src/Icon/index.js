@@ -10,7 +10,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Octicons from 'react-native-vector-icons/Octicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import { Image } from 'react-native';
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -80,9 +79,16 @@ class Icon extends PureComponent {
 
     if (isURL(name)) {
       return (
-        <Image
-          source={{ uri: name }}
-          style={{ width: iconSize, height: iconSize }}
+        <span
+          style={{
+            width: iconSize,
+            height: iconSize,
+            backgroundColor: iconColor,
+            maskImage: `url(${name})`,
+            maskSize: 'contain',
+            maskPosition: 'center',
+            maskRepeat: 'no-repeat',
+          }}
         />
       );
     }
