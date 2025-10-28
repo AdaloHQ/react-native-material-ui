@@ -5,7 +5,7 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableWithoutFeedback,
+  Pressable,
   NativeModules,
   findNodeHandle,
 } from 'react-native';
@@ -316,19 +316,19 @@ class ListItem extends PureComponent {
 
     if (typeof leftElement === 'string') {
       content = (
-        <TouchableWithoutFeedback onPress={this.onLeftElementPressed}>
+        <Pressable onPress={this.onLeftElementPressed}>
           <Icon
             iconSet={iconSet}
             name={leftElement}
             color={flattenLeftElement.color}
           />
-        </TouchableWithoutFeedback>
+        </Pressable>
       );
     } else {
       content = (
-        <TouchableWithoutFeedback onPress={this.onLeftElementPressed}>
+        <Pressable onPress={this.onLeftElementPressed}>
           <View>{leftElement}</View>
-        </TouchableWithoutFeedback>
+        </Pressable>
       );
     }
 

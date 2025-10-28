@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View, Pressable } from 'react-native';
 /* eslint-enable import/no-unresolved, import/extensions */
 import ListItem from '../ListItem';
 import { ViewPropTypes } from '../utils';
@@ -90,9 +90,9 @@ class HeaderAcount extends PureComponent {
     // invariant(account.key, 'Please provide key prop to account object in accounts array.');
 
     return (
-      <TouchableWithoutFeedback key={account.key} onPress={account.onPress}>
+      <Pressable key={account.key} onPress={account.onPress}>
         <View style={[styles.inactiveAvatarContainer]}>{account.avatar}</View>
-      </TouchableWithoutFeedback>
+      </Pressable>
     );
   };
 
