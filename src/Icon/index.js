@@ -40,10 +40,15 @@ const defaultProps = {
 };
 
 const isURL = value =>
-  value && typeof value === 'string' && (value.startsWith('https://') || value.startsWith('http://'));
+  value && typeof value === 'string' && value.startsWith('https://');
 
 const isSVG = url => {
-  return url.includes('.svg');
+  try {
+    const pathname = new URL(url).pathname;
+    return pathname.toLowerCase().endsWith('.svg');
+  } catch (e) {
+    return false;
+  }
 };
 
 const getIconComponent = iconSet => {
