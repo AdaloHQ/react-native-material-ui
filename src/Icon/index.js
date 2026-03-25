@@ -43,12 +43,8 @@ const isURL = value =>
   value && typeof value === 'string' && value.startsWith('https://');
 
 const isSVG = url => {
-  try {
-    const pathname = new URL(url).pathname;
-    return pathname.toLowerCase().endsWith('.svg');
-  } catch (e) {
-    return false;
-  }
+  const path = url.split('?')[0].split('#')[0];
+  return path.toLowerCase().endsWith('.svg');
 };
 
 const getIconComponent = iconSet => {
