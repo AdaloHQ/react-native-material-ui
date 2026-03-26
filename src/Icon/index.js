@@ -11,11 +11,12 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
-import { Image } from 'react-native';
+import { Image, Platform } from 'react-native';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 /* eslint-enable import/no-unresolved, import/extensions */
 import withTheme from '../styles/withTheme';
+import TintedSvgIcon from './TintedSvgIcon';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -40,6 +41,11 @@ const defaultProps = {
 
 const isURL = value =>
   value && typeof value === 'string' && value.startsWith('https://');
+
+const isSVG = url => {
+  const path = url.split('?')[0].split('#')[0];
+  return path.toLowerCase().endsWith('.svg');
+};
 
 const getIconComponent = iconSet => {
   switch (iconSet) {
@@ -79,10 +85,21 @@ class Icon extends PureComponent {
     const iconSize = size || spacing.iconSize;
 
     if (isURL(name)) {
+      if (isSVG(name) && Platform.OS !== 'web') {
+        return (
+          <TintedSvgIcon
+            uri={name}
+            width={iconSize}
+            height={iconSize}
+            color={iconColor}
+          />
+        );
+      }
       return (
         <Image
           source={{ uri: name }}
-          style={{ width: iconSize, height: iconSize, tintColor: color }}
+          style={{ width: iconSize, height: iconSize, tintColor: iconColor }}
+          resizeMode="contain"
         />
       );
     }
