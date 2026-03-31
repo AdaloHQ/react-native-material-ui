@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Platform, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 
-let SvgXml = null;
-if (Platform.OS !== 'web') {
-  SvgXml = require('react-native-svg').SvgXml;
-}
-
-const svgCache = new Map();
+import SvgXml from './svgXml';
 
 function replaceSvgColors(xml, color) {
   let result = xml.replace(/fill="(?!none"|url\()[^"]*"/gi, `fill="${color}"`);
@@ -23,39 +18,33 @@ function replaceSvgColors(xml, color) {
   return result;
 }
 
-function fetchSvg(uri) {
-  if (svgCache.has(uri)) {
-    return svgCache.get(uri);
-  }
-  const promise = fetch(uri)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-      return res.text();
-    })
-    .catch(() => {
-      svgCache.delete(uri);
-      return null;
-    });
-  svgCache.set(uri, promise);
-  return promise;
-}
-
 const TintedSvgIcon = ({ uri, width, height, color, style }) => {
   const [rawXml, setRawXml] = useState(null);
 
-  useEffect(() => {
-    let cancelled = false;
-    fetchSvg(uri).then(text => {
-      if (!cancelled && text) {
-        setRawXml(text);
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [uri]);
+  useEffect(
+    () => {
+      let cancelled = false;
+      fetch(uri)
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+          return res.text();
+        })
+        .then(text => {
+          if (!cancelled) {
+            setRawXml(text);
+          }
+        })
+        .catch(err => {
+          console.error('[TintedSvgIcon] Failed to fetch SVG:', err);
+        });
+      return () => {
+        cancelled = true;
+      };
+    },
+    [uri],
+  );
 
   const xml = rawXml ? replaceSvgColors(rawXml, color) : null;
 
@@ -74,19 +63,19 @@ const TintedSvgIcon = ({ uri, width, height, color, style }) => {
   );
 };
 
-const propTypes = {
+TintedSvgIcon.propTypes = {
   uri: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  color: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
-const defaultProps = {
-  style: undefined,
+TintedSvgIcon.defaultProps = {
+  width: 24,
+  height: 24,
+  color: '#000',
+  style: {},
 };
-
-TintedSvgIcon.propTypes = propTypes;
-TintedSvgIcon.defaultProps = defaultProps;
 
 export default TintedSvgIcon;
